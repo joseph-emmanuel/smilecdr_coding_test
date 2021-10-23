@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Smile CDR Coding Test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a skeleton project for querying data from the [Smile CDR Test Server](https://try.smilecdr.com/baseR4/Patient)
 
-## Available Scripts
+### Getting Started:
 
-In the project directory, you can run:
+* [ ] Take a few minutes to familiarize yourself with the [FHIR Standard](http://hl7.org/fhir/) for health data exchange. In particular, you might want to read the [Executive Summary](http://hl7.org/fhir/summary.html) and the [Developer Introduction](http://hl7.org/fhir/overview-dev.html)
 
-### `npm start`
+* [ ] Use whatever library & framework you're most comfortable with.
+  
+* [ ] Create your own GitHub project and copy the contents of this repository into your own project.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* [ ] **Please, do not fork this repo.** Create your own private GitHub repository to do your work in.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Basic Tasks:
 
-### `npm test`
+* [ ] Create a patient view with patients fetched from `https://try.smilecdr.com/baseR4/Patient`. The patients should be sorted by name & birthdate (if a birthdate is in the record). 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* [ ] Display the first & last names, birthdate, address, gender & phone number.
+ 
+* [ ] Ensure the table is responsive. Ensure there is proper error handling for missing elements in the data.
 
-### `npm run build`
+* [ ] Time the request. Output the time on the footer of the page in a human readable format.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* [ ] Add a search function to the page. Add two inputs to your view - one for first name, and one for last name.  Make an API call to `https://try.smilecdr.com/baseR4/Patient?given=<userinput>&family=<userinput>` that searches for a `Patient` based on the names passed in. Replace `<userinput>` with the data from the inputs. If only one name is entered in the inputs, modify the query to only use either the first or last name entered.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* [ ] Add a function to reset the search results in the table.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* [ ] Apply validation to the inputs - the boxes cannot contain non-alphabetic characters.
 
-### `npm run eject`
+* [ ] Commit your work.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Intermediate Tasks:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* [ ] Generate a questionnaire view. In the view, _dynamically_ generate a form and capture the answer for the following questions :- 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    -    Do you have allergies? **Radio Button (True, False)**
+    -    What is your gender? **Select (Male, Female, Other)**
+    -    What is your date of birth? **Datepicker**
+    -    What is your country of birth? **Textbox**
+    -    What is your marital status? **Select (Married, Single, Divorced)**
+    -    Do you smoke? **Radio Button (True, False)**
+    -    Do you drink alchohol? **Radio Button (True, False)**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+* [ ] Display the results of the form based on submit at the bottom of the page. 
 
-## Learn More
+* [ ] Commit your work.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* [ ] **Bonus :-** If dynamic form is generated using the [`questionnaire.json` file](assets/questionnaire.json)  in the `assets` folder. The form should have validation applied to each input. 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* [ ] **Bonus :-** Using the results from the form, generate a [`QuestionnaireResponse`](https://www.hl7.org/fhir/questionnaireresponse.html). The `QuestionnaireResponse` should follow the structure outlined in the [Resource Content Section](https://www.hl7.org/fhir/questionnaireresponse.html#resource)
